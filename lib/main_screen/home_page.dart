@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:podpanda_web_ap_ui/authentication/login_screen.dart';
 import 'package:podpanda_web_ap_ui/utils/all_text.dart';
 import 'package:podpanda_web_ap_ui/utils/reusable_text.dart';
 
@@ -121,7 +123,11 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
               ElevatedButton.icon(
-                onPressed: () {},
+
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>const LoginScreen()));
+                },
                 icon:const Icon(
                   Icons.logout,
                   color: Colors.white,
@@ -132,6 +138,7 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.white,
                 ),
                 style: ElevatedButton.styleFrom(
+
                   padding: const EdgeInsets.all(40),
                   backgroundColor: Colors.amber,
                 ),

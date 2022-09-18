@@ -1,8 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:podpanda_web_ap_ui/authentication/login_screen.dart';
+import 'package:podpanda_web_ap_ui/main_screen/home_page.dart';
 
 
-void main() {
+Future<void> main()async {
+ WidgetsFlutterBinding.ensureInitialized();
+ await Firebase.initializeApp(
+   // Replace with actual values
+   options: FirebaseOptions(
+     apiKey: "AIzaSyDB64eFic3gepTpZcZ3G9a48WlThzH9JCg",
+     appId: "1:675531088988:web:b2314dc6ad6db05303f299",
+     messagingSenderId: "675531088988",
+     projectId: "podpanda-web-responsive",
+   ),
+ );
   runApp(const MyApp());
 }
 
@@ -18,7 +31,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginScreen(),
+      home:FirebaseAuth.instance.currentUser ==null? const LoginScreen():const HomePage(),
     );
   }
 }
